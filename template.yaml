@@ -40,5 +40,5 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref MyApi
-            Path: /
+            Path: /{proxy+}
             Method: GET
