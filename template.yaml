@@ -15,7 +15,12 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       StageName: Prod
-      Cors: "'*'"
+      Cors:
+        AllowMethods: "'POST, GET'"
+        AllowHeaders: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+        AllowOrigin: "'*'"
+        MaxAge: "'600'"
+        
       Auth:
         DefaultAuthorizer: MyCognitoAuthorizer
         Authorizers:
@@ -27,8 +32,8 @@ Resources:
     Name: HelloWorldFunction
     Properties:
       
-      CodeUri: ./hello-world
-      Handler: lambda.handler
+      CodeUri: ./src
+      Handler: app.lambdaHandler
       Runtime: nodejs12.x
       Events:
         Root:

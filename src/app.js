@@ -22,7 +22,13 @@ exports.lambdaHandler = async (event, context) => {
             'body': JSON.stringify({
                 message: 'hello world',
                 // location: ret.data.trim()
-            })
+                
+            }),
+            'headers': {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "POST, GET",
+                "Access-Control-Allow-Headers": "Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token"
+            }
         }
     } catch (err) {
         console.log(err);
