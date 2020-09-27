@@ -36,9 +36,16 @@ Resources:
       Handler: app.handler
       Runtime: nodejs12.x
       Events:
-        Root:
+        POSTEvent:
           Type: Api
           Properties:
             RestApiId: !Ref MyApi
             Path: /{proxy+}
             Method: POST
+
+        GETEvent:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyApi
+            Path: /{proxy+}
+            Method: GET

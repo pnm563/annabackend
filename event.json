@@ -1,8 +1,8 @@
 {
   "body": "eyJ0ZXN0IjoiYm9keSJ9",
   "resource": "/{proxy+}",
-  "path": "/path/to/resource",
-  "httpMethod": "POST",
+  "path": "/test",
+  "httpMethod": "GET",
   "isBase64Encoded": true,
   "queryStringParameters": {
     "foo": "bar"
@@ -13,7 +13,7 @@
     ]
   },
   "pathParameters": {
-    "proxy": "/path/to/resource"
+    "proxy": "/test"
   },
   "stageVariables": {
     "baz": "qux"
