@@ -33,7 +33,7 @@ Resources:
     Properties:
       
       CodeUri: ./src
-      Handler: app.lambdaHandler
+      Handler: app.handler
       Runtime: nodejs12.x
       Events:
         Root:
@@ -41,4 +41,4 @@ Resources:
           Properties:
             RestApiId: !Ref MyApi
             Path: /{proxy+}
-            Method: GET
+            Method: POST
