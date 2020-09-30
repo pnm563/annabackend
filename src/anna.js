@@ -11,7 +11,7 @@ var path = "/thing"
 
 AWS.config.update({ region: 'eu-west-2' });
 
-let tableName = 'CountryFlags';
+let tableName = 'annabackend-FlagsTable-1VW9XASPJWEMS';
 
 var app = express()
 app.use(bodyParser.json())
@@ -26,7 +26,24 @@ app.get('/test', (req,res) =>{
     res.json({"Thanks for that":"test"});
 })
 
-app.get('items', (req, res) => {
+app.post('/items', function(req, res) {
+
+  let putItemParams = {
+    TableName: tableName,
+    Item: req.body
+  }
+  dynamodb.put(putItemParams, (err, data) => {
+    if(err) {
+      res.statusCode = 500;
+      res.json({error: err, url: req.url, body: req.body});
+    } else{
+      res.json({success: 'post call succeed!', url: req.url, data: data})
+    }
+  });
+});
+
+
+app.get('/items', (req, res) => {
     let queryParams = {
       TableName: tableName,
       KeyConditionExpression: "#flagType = :flag",

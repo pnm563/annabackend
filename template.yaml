@@ -27,6 +27,14 @@ Resources:
           MyCognitoAuthorizer:
             UserPoolArn: arn:aws:cognito-idp:eu-west-2:065108234055:userpool/eu-west-2_0J4FpZYXK
 
+  FlagsTable:
+        Type: AWS::Serverless::SimpleTable
+        Name: FlagsTable
+        Properties:
+          PrimaryKey:
+            Name: FlagType
+            Type: String
+
   MyFunction:
     Type: AWS::Serverless::Function
     Name: HelloWorldFunction
@@ -35,6 +43,20 @@ Resources:
       CodeUri: ./src
       Handler: app.handler
       Runtime: nodejs12.x
+      
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:DescribeTable
+                - dynamodb:Get*
+                - dynamodb:Update*
+                - dynamodb:PutItem
+                - dynamodb:Query
+                - dynamodb:Scan
+              Resource: !GetAtt FlagsTable.Arn
+
       Events:
         POSTEvent:
           Type: Api
@@ -49,3 +71,8 @@ Resources:
             RestApiId: !Ref MyApi
             Path: /{proxy+}
             Method: GET
+
+   
+
+
+

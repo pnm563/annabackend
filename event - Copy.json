@@ -1,5 +1,5 @@
 {
-  "body": "eyJ0ZXN0IjoiYm9keSJ9",
+  "body": "{\"Test\":\"TEST\"}",
   "resource": "/{proxy+}",
   "path": "/items",
   "httpMethod": "POST",
@@ -36,7 +36,8 @@
     "X-Amz-Cf-Id": "cDehVQoZnx43VYQb9j2-nvCh-9z396Uhbp027Y2JvkCPNLmGJHqlaA==",
     "X-Forwarded-For": "127.0.0.1, 127.0.0.2",
     "X-Forwarded-Port": "443",
-    "X-Forwarded-Proto": "https"
+    "X-Forwarded-Proto": "https",
+	"Content-Type" : "application/json"
   },
   "multiValueHeaders": {
     "Accept": [
