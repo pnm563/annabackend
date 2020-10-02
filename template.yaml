@@ -35,6 +35,30 @@ Resources:
             Name: FlagType
             Type: String
 
+  FlagsTable2:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        -
+          AttributeName: "FlagType"
+          AttributeType: "S"
+        -
+          AttributeName: "ID"
+          AttributeType: "S"
+        
+      KeySchema: 
+        -
+          AttributeName: "FlagType"
+          KeyType: "HASH"
+        -
+          AttributeName: "ID"
+          KeyType: "RANGE"
+
+      TableName: FlagsTable2
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+
   MyFunction:
     Type: AWS::Serverless::Function
     Name: HelloWorldFunction
@@ -55,7 +79,7 @@ Resources:
                 - dynamodb:PutItem
                 - dynamodb:Query
                 - dynamodb:Scan
-              Resource: !GetAtt FlagsTable.Arn
+              Resource: !GetAtt FlagsTable2.Arn
 
       Events:
         POSTEvent:

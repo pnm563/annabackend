@@ -11,12 +11,17 @@ var path = "/thing"
 
 AWS.config.update({ region: 'eu-west-2' });
 
-let tableName = 'annabackend-FlagsTable-1VW9XASPJWEMS';
+//let tableName = 'annabackend-FlagsTable-1VW9XASPJWEMS';
+let tableName = 'FlagsTable2';
+
+let corsOptions = {
+  maxAge: 600
+};
 
 var app = express()
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
-app.use(cors())
+app.use(cors(corsOptions))
 
 app.post(path, (req, res) => {
     res.json(req.apiGateway.event);
